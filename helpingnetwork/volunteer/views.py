@@ -42,3 +42,19 @@ def profile(request):
 def logout(request):
     auth.logout(request)
     return render(request,'logout.html')
+
+
+def v_profile(request):
+	if request.method == 'GET':
+		o_org=request.GET.get('vol')
+		c_user=User.objects.filter(username=o_org).first()
+		c_vol=Volunteer.objects.filter(user=c_user).first()
+		all_events=Event.objects.filter(volunteers=c_vol)
+		context={
+			"f_name":c_vol.user.first_name,
+			"city":c_vol.my_city,
+			"l_name":c_vol.user.last_name,
+			"events":all_events,
+		}
+
+	return render(request,"volunteer/v_profile.html",context)

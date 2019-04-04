@@ -20,6 +20,7 @@ from organization import views as o_views
 from django.conf import settings
 from django.conf.urls.static import static
 from evelist import views as e_views
+from volunteer import views as v_views
 import re
 
 urlpatterns = [
@@ -36,6 +37,8 @@ urlpatterns = [
 	 re_path(r'^view_organization/?$', o_views.printo, name='org_profile'),
 	 re_path(r'^current_events/?$', e_views.printo, name='event_home'),
 	 re_path(r'^signupnow/?$', e_views.e_signin, name='event_signin'),
+	 re_path(r'^view_volunteer/?$', v_views.v_profile, name='vol_profile'),
+	
 ]
 
 if settings.DEBUG:
