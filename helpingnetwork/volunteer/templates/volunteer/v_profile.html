@@ -1,0 +1,14 @@
+{%extends "volunteer/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+
+<h1>{{f_name}} {{l_name}} </h1>
+<h2>{{city}} </h2>
+{% for event in events %}
+<h2> {{event.name}} </h2>
+<h2>  {{event.organizer}} </h2>
+<h2> {{event.description}}  </h2>
+{% endfor %}
+</div>
+{% endblock content %}
