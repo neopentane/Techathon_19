@@ -82,3 +82,14 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+
+.apnacard {
+  border-radius: 20px;
+  border-width: 2px;
+  border-color: #03a9f4;
+  box-shadow: -1px -1px 8px 0px rgba(3,169,244,0.7);
+}
+
+.apnaimage {
+  border-radius: 20px
+}
