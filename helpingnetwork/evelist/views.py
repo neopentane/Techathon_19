@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from organization.models import Organization,OrganizationImages
 from .models import Event,EventImages,Signup
 from django.http import HttpResponse
-from .forms import EventSignupForm
+#from .forms import EventSignupForm
 # Create your views here.
 def index(request):
     x=Event.objects.all()
@@ -33,7 +33,7 @@ def printo(request):
 		}
 	return render(request,'evelist/current_event.html',context)
 
-def e_signin(request):
+'''def e_signin(request):
 	if request.method == 'POST':
 		form2=EventSignupForm(request.POST)
 		if form2.is_valid():
@@ -42,8 +42,15 @@ def e_signin(request):
 	else:
 		form2=EventSignupForm()
 	return render(request,'evelist/signin_event.html',{'form': form2})
+'''
 
-
-
-
-
+def e_signin(request):
+	c_event=request.GET.get('event')
+	eventt=Event.objects.filter(name=c_event).first()
+	#z=eventt.name
+	current_user = request.user
+	v=current_user.volunteer
+	#c_org=request.GET.get('org')
+	x= Signup(event=eventt,volunteer=v,invite_reason="aisehi")
+	x.save()
+	return HttpResponse("done")
