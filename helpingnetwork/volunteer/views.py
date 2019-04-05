@@ -122,3 +122,7 @@ def sort_city(request):
 		
 	return render(request,"evelist/cit.html",{
 				"all":ncatagory,})	
+
+
+def abt(request):
+	return render(request,"volunteer/about.html")

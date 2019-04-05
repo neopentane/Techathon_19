@@ -45,7 +45,7 @@ urlpatterns = [
 	re_path(r'^voluns/?$', o_views.v_name, name='volun'),
     re_path(r'^volunteerupvote/?$', o_views.upvote, name='upvotethis'),
     re_path(r'FeedbackBakchodi/?$',e_views.pingu,name='Feedback_form'),
-
+    path('aboutus/', v_views.abt, name='about'),
 ]
 
 if settings.DEBUG:
