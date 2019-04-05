@@ -3,8 +3,6 @@
 
 {% block content %}
 <div class="content-section">
-  {% for x in category%}
-    {{x}} {%  endfor %}  
  
     <div>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -23,11 +21,20 @@
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:max-content;margin-left:5px;font-size:20px;margin-right: 5px; border: 1px solid transparent; color: darkslategray;"><b>City</b>
     </a>
+    {% if cityy %}  
      <div class="dropdown-menu ml-auto" aria-labelledby="navbarDropdown" style="font-size:20px;">
-        {% for x in cityy %}
+     
+      {% for x in cityy %}
             <a class="dropdown-item" href="{% url 'city'%}?jagah={{x.name}}"> {{x}} </a> 
         {% endfor %}
+        
      </div>
+    
+     {%else %}
+    <h1> not found </h1>
+     
+     {% endif%}
+
   </div>
      
      <a class="btn success" href="{% url 'vol_profile'%}?vol={{request.user.volunteer}}" style="border: none;color:darkslategray; padding: 14px 28px;font-size: 16px; cursor: pointer; float: right;margin-top: -40px;background-color: lightskyblue;"><b>Profile</b></a>

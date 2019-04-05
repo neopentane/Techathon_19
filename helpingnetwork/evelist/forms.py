@@ -13,5 +13,6 @@ class NewForm(forms.Form):
 class FeForm(forms.ModelForm):
 	class Meta:
 		model=Feedback
+		labels={"fifa":"Event","tfield":"Feedback"}
 		fields=["fifa","tfield"]
 		

@@ -75,7 +75,9 @@ def pingu(request,form=None):
 			form=FeForm(request.POST)
 			if form.is_valid():
 				form.save()
-				#return redirect('profile')		
+				messages.success(request, f' feedback successfully sent ')
+
+			return redirect('profile')		
 		else:
 			form=FeForm()
 
