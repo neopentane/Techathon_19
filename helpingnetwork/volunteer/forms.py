@@ -21,6 +21,13 @@ class UserRegisterForm(UserCreationForm):
 			user.save()
 		return user
 '''
+
+
+
+class IdForm(forms.Form):
+	ID=forms.CharField(required=True, label="Put OTP")
+
+
 class UserRegisterForm(UserCreationForm):
 	first_name=forms.CharField(required=True, label="First Name")
 	last_name=forms.CharField(required=True, label="Last Name")
@@ -41,3 +48,4 @@ class VolunteerRegisterForm(forms.ModelForm):
 		model= Volunteer
 		fields = ['my_city']
 		exclude=['user']
+

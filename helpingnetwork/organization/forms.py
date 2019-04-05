@@ -30,8 +30,8 @@ class CreateEventForm(forms.Form):
 class CreateEventForm(forms.ModelForm):
 	class Meta:
 		model=Event
-		labels={"name":"Event Name","description":"Add Description","eventprofileImage":"Add Event Image"}
-		fields=['name','description','venue','date','eventprofileImage']
+		labels={"name":"Event Name","description":"Add Description","eventprofileImage":"Add Event Image","category":"category"}
+		fields=['name','description','venue','date','eventprofileImage','category']
 		exclude=['organizer']
 
 class AddOrgImage(forms.ModelForm):

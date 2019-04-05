@@ -1,17 +1,22 @@
 {%extends "volunteer/base.html" %}
 {% block content %}
+<head>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'volunteer/login.css' %}">
+</head>
 {% load crispy_forms_tags %}
-    <div class="content-section">
+    <div class="content-section" style="margin-left:200px; margin-top: 40px;">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <fieldset class="form-group">
+            <fieldset class="form-group" style="width:600px">
                 <legend class="border-bottom mb-8">Add Images</legend>
                 {{ form|crispy}}
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Upload and Add another</button>
-                <button class="btn btn-outline-info" type="submit" href="{%url 'all_event'%}">Save And Exit</button>
+               
             </div>
 </form>
-		</form>
+        </form>
+        <a class="btn btn-outline-info" type="submit" href="{%url 'profile'%}">Return </a>
 {% endblock content %}

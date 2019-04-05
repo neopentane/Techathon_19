@@ -26,6 +26,7 @@ import re
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('evelist.urls'),),
+    #url(r'^$','evelist.views.index'),
     path('volunteer/', include('volunteer.urls'),),
     path('organization/', include('organization.urls' , namespace='organization'),),
 	 path('login/', auth_views.LoginView.as_view(template_name='volunteer/login.html'), name='login'),
@@ -38,7 +39,13 @@ urlpatterns = [
 	 re_path(r'^current_events/?$', e_views.printo, name='event_home'),
 	 re_path(r'^signupnow/?$', e_views.e_signin, name='event_signin'),
 	 re_path(r'^view_volunteer/?$', v_views.v_profile, name='vol_profile'),
-	
+	path('all_event/',v_views.sort_all,name='all_eve'),
+    re_path(r'^category/?$', v_views.sort_cat, name='category'),
+    re_path(r'^ city/?$',v_views.sort_city,name="city"),
+	re_path(r'^voluns/?$', o_views.v_name, name='volun'),
+    re_path(r'^volunteerupvote/?$', o_views.upvote, name='upvotethis'),
+    re_path(r'FeedbackBakchodi/?$',e_views.pingu,name='Feedback_form'),
+
 ]
 
 if settings.DEBUG:

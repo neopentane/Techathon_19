@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect
 from organization.models import Organization,OrganizationImages
-from .models import Event,EventImages,Signup
+from .models import Event,EventImages,Signup,Feedback
 from django.http import HttpResponse
+from .forms import FeForm,NewForm
+from django.contrib import messages
+
 #from .forms import EventSignupForm
 # Create your views here.
 def index(request):
@@ -45,12 +48,37 @@ def printo(request):
 '''
 
 def e_signin(request):
+
 	c_event=request.GET.get('event')
 	eventt=Event.objects.filter(name=c_event).first()
-	#z=eventt.name
+	#z=eventt.venue
 	current_user = request.user
-	v=current_user.volunteer
-	#c_org=request.GET.get('org')
-	x= Signup(event=eventt,volunteer=v,invite_reason="aisehi")
-	x.save()
-	return HttpResponse("done")
+	y=Event.objects.filter(name=c_event).first()
+	z=y.volunteers.all()
+	
+	if(current_user.volunteer in z):
+		messages.warning(request, f'already Signed up for {eventt}!')
+	else:	
+		v=current_user.volunteer
+		#c_org=request.GET.get('org')
+		x= Signup(event=eventt,volunteer=v,invite_reason="aisehi")
+		x.save()
+		messages.success(request, f'successfully Signed up for {eventt}!')
+
+	return redirect('profile')
+
+def pingu(request,form=None):
+	if request.method=='GET':
+		event=request.GET.get('event')
+		getevent=Event.objects.filter(name=event).first()
+		if request.method=='POST':
+			form=FeForm(request.POST)
+			if form.is_valid():
+				form.save()
+				#return redirect('profile')		
+		else:
+			form=FeForm()
+
+	
+	return render(request,'evelist/something.html',{'something':form})
+

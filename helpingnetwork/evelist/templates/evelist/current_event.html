@@ -1,32 +1,50 @@
 {%extends "volunteer/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-  <h1> Hellowww </h1>
+<head>
+    {% load static %}
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'evelist/eve1.css' %}">-->
+</head>
+<body style="padding: 15px 15px 1000px; background-color: ghostwhite;">
+  <!--<h1> Hello </h1>-->
+  <section>
   <h2>Event:{{event}}</h2>
-  <h2> Organizor:{{org}} </h2>
-	<h2> description:{{disp}}
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  </section>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="border-style: hidden; width: 1000px; height: 400px;">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
+   
    <div class="carousel-inner">
 	{% for i in images %}
-    <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}" id="slide{{ forloop.counter }}"">
-      <img class="d-block w-50" src="{{i.image.url}}" alt="First slide">
+    <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}" id="slide{{ forloop.counter }}">
+      <img class="d-block w-50" src="{{i.image.url}}" alt="First slide" style="margin-top:50px; margin-bottom:50px; border-style:solid; margin-left: 220px;">
     </div>
 	{% endfor %}
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
+      <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black;"></span>
+      <span class="sr-only">Previous</span>
   </a>
   <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: black;"></span>
     <span class="sr-only">Next</span>
   </a>
 </div>
-<a href="{% url 'org_profile' %}?org={{organizer}}">View organizaor</a>
-<a class="btn btn-primary" href="{% url 'event_signin'%}?event={{event}}" role="button">Signup</a>
+
+<div>
+     <h2> Organizor:{{org}} </h2>
+     <p> description:{{disp}} </p>
+</div>
+  
+
+<section style="margin-top: 80px">
+<a href="{% url 'org_profile' %}?org={{organizer}}" style="font-size: xx-large;">View organizor</a>
+<a class="btn btn-primary" href="{% url 'event_signin'%}?event={{event}}" role="button" style="float: right;font-size: 20px;">Signup</a>
+</section>
+</body>
 {% endblock content %}
+

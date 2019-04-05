@@ -1,16 +1,47 @@
 {%extends "volunteer/base.html" %}
 {% load crispy_forms_tags %}
+
 {% block content %}
 <div class="content-section">
+  {% for x in category%}
+    {{x}} {%  endfor %}  
+ 
+    <div>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:max-content;margin-left:5px;font-size:20px;margin-right: 5px; border: 1px solid transparent; color: darkslategray;"><b>Categories</b>
+             </a>
+             <div class="dropdown-menu ml-auto" aria-labelledby="navbarDropdown" style="font-size:20px;">
+                {% for i in category %}
+                    <a class="dropdown-item" href="{% url 'category'%}?cat={{i}}"> {{i}} </a> 
+                {% endfor %}
+             </div>
+             
+        </div>
+    
+      
+    <div>
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:max-content;margin-left:5px;font-size:20px;margin-right: 5px; border: 1px solid transparent; color: darkslategray;"><b>City</b>
+    </a>
+     <div class="dropdown-menu ml-auto" aria-labelledby="navbarDropdown" style="font-size:20px;">
+        {% for x in cityy %}
+            <a class="dropdown-item" href="{% url 'city'%}?jagah={{x.name}}"> {{x}} </a> 
+        {% endfor %}
+     </div>
+  </div>
+     
+     <a class="btn success" href="{% url 'vol_profile'%}?vol={{request.user.volunteer}}" style="border: none;color:darkslategray; padding: 14px 28px;font-size: 16px; cursor: pointer; float: right;margin-top: -40px;background-color: lightskyblue;"><b>Profile</b></a>
 {% for i in Events %}
 <div class="card apnacard" style="width: 100; margin: 5%;">
   <img class="card-img-top apnaimage" src="{{i.eventprofileImage.url}}" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{i.name}}</h5>
+    <h6 class="card-title">{{i.date}}</h6>
     <p class="card-text">{{i.description}}</p>
-    <a href="{% url 'event_home' %}?event={{i.name}}&&org={{i.organizer}}"class="btn btn-primary">Go somewhere</a>
+    <a href="{% url 'event_home' %}?event={{i.name}}&&org={{i.organizer}}"class="btn btn-primary">Explore</a>
   </div>
 </div>
 {% endfor %}
-</div>
+
+
 {% endblock content %}

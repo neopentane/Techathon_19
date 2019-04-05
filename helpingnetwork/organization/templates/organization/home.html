@@ -1,20 +1,21 @@
 {%extends "volunteer/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+<head>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'organization/home.css' %}">
+</head>
 <div class="container-fluid">
-	<div class="row">
+		{% load static %}
+	<div class="row"  style="margin-top: 120px; width: 550px;">
 		<div class="col-sm-6">
 			<div id="list-example" class="list-group">
-  				<a class="list-group-item list-group-item-action" href="{% url 'create_event' %}">Create Event</a>
-  				<a class="list-group-item list-group-item-action" href="{% url 'all_event' %}">All Event</a>
-  				<a class="list-group-item list-group-item-action" href="{% url 'change_profile' %}">Organizaion Profile</a>
-				<a class="list-group-item list-group-item-action" href="{% url 'add_img' %}">Add Images To Event</a>
-				<a class="list-group-item list-group-item-action" href="{% url 'org_profile' %}?org={{user.organization}}">View My Profile</a>
+  				<a class="list-group-item list-group-item-action" href="{% url 'create_event' %}"  style="font-family: fantasy; font-size: x-large;background-color: aliceblue;">Create Event</a>
+  				<a class="list-group-item list-group-item-action" href="{% url 'all_event' %}"  style="font-family: fantasy; font-size: x-large;background-color: aliceblue;">All Event</a>
+  				<a class="list-group-item list-group-item-action" href="{% url 'change_profile' %}"  style="font-family: fantasy; font-size: x-large;background-color: aliceblue;">Organizaion Profile</a>
+				<a class="list-group-item list-group-item-action" href="{% url 'add_img' %}"  style="font-family: fantasy; font-size: x-large;background-color: aliceblue;">Add Images To Event</a>
+				<a class="list-group-item list-group-item-action" href="{% url 'org_profile' %}?org={{user.organization}}"  style="font-family: fantasy; font-size: x-large;background-color: aliceblue;">View My Profile</a>
 			</div>
-		</div>
-		<div class="col-sm-12">
-			Organization Profile Here
-			<h1> Create Event</h1>
 		</div>
 	</div>
 </div>

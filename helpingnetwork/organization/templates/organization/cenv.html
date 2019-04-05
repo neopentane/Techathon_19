@@ -1,10 +1,14 @@
 {%extends "volunteer/base.html" %}
 {% block content %}
 {% load crispy_forms_tags %}
-    <div class="content-section">
+<head>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'organization/signup.css' %}">
+</head>
+    <div class="content-section" style="margin-left:230px; margin-top:40px;">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <fieldset class="form-group">
+            <fieldset class="form-group" style="width:600px">
                 <legend class="border-bottom mb-8">Create Event</legend>
                 {{ form|crispy}}
             </fieldset>

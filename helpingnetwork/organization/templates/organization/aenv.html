@@ -1,10 +1,11 @@
 {%extends "volunteer/base.html" %}
 {% block content %}
 {% for event in events %}
-<div>
-<h1> name: {{event.name}}   </h1>
-<h1>  organizer:{{event.organizer}} </h1>
-<h1>  {{event.description}}   </h1>
+<div style="padding:15px 15px 300px">
+<h2 style="padding-bottom:20px;"><a href="{% url 'volun'%}?event={{event.name}}"> Event Name: {{event.name}}</h2></a>
+<h3 style="padding-bottom:20px;">  Organizer:{{event.organizer}} </h3>
+<h5 style="padding-bottom:20px;">  {{event.description}}   </h5>
+        <img class="card-img-top apnaimage" src="{{event.eventprofileImage.url}}" alt="Card image cap">
 </div>
 {% endfor %}
 

@@ -1,14 +1,37 @@
 {%extends "volunteer/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="content-section">
+<head>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'volunteer/login.css' %}">
+    </head>
+<div class="content-section" style="margin-left:220px;width: 700px; margin-top: 40px;">
 
-<h1>{{f_name}} {{l_name}} </h1>
-<h2>{{city}} </h2>
-{% for event in events %}
-<h2> {{event.name}} </h2>
-<h2>  {{event.organizer}} </h2>
-<h2> {{event.description}}  </h2>
-{% endfor %}
+<h1>Name : {{f_name}} {{l_name}} </h1>
+<h3>City : {{city}} </h3>
+<h3>upvotes : {{Upvotes}}</h3>
+<h3>Participated Events</h3>
+
+<table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Event Name</th>
+            <th scope="col">Organizer</th>
+            <th scope="col">Feedback</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for event in events %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td> {{event.name}} </td>
+            <td> {{event.organizer}} </td>
+            <td> <a href="{% url 'Feedback_form' %}?event= {{event.name}}" style="border: none;color:darkslategray; padding: 10px 18px;font-size: 16px; cursor: pointer; background-color: lightskyblue;">Feedback</a> </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
 </div>
 {% endblock content %}

@@ -4,8 +4,13 @@ from volunteer.models import City,Volunteer
 from django.utils import timezone
 from organization.models import Organization
 
+class EventCategory(models.Model):
+	category=models.CharField(max_length=100)
+	def __str__(self):
+		return self.category
 
 class Event(models.Model):
+	category=models.ForeignKey(EventCategory,on_delete=models.CASCADE)
 	volunteers= models.ManyToManyField(Volunteer,through='Signup')
 	name=models.CharField(max_length=100)
 	description=models.TextField()
@@ -25,4 +30,9 @@ class Signup(models.Model):
 class EventImages(models.Model):
 	i_event=models.ForeignKey(Event,on_delete=models.CASCADE)
 	image=models.ImageField(default='default.jpg', upload_to='eventimages')
+
+class Feedback(models.Model):
+	fifa=models.ForeignKey(Event,on_delete=models.CASCADE)
+	tfield=models.CharField(max_length=100)
 # Create your models here.
+

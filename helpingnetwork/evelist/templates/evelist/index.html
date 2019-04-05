@@ -1,17 +1,93 @@
 {%extends "volunteer/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'evelist/eve.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
     
+<body>
+<div style="padding:15px 15px 1500px;font-size:30px">
     {% if x %}
-        {% for query in x %}
+        <!--{% for query in x %}
             <ul style="list-style-type:none">
             <li>
                 <a href="evelist/{{query.id}}"> {{query.name }}
                 </a>
             </li>
             </ul>
-        {% endfor %}
+        {% endfor %}-->
     {% else %}
      no events to show    
-     {% endif %}       
+     {% endif %}
+     <div class="title">
+      <div class="w3-container w3-center w3-animate-top" style="animation-duration: 3s;">
+        <h1><b><pre>Alone we can do little;
+            together we can do so much!</pre></b></h1>
+      </div>
+     </div>
+    <div style="position: absolute;top: 685px;width: 637px;height: 80px;background: aliceblue;
+                                   text-align: center; margin-left: auto;margin-right: auto;left: 0;right: 0;color: blueviolet">
+        <ul>
+            <!--<a href="#" class="mid_links">VOLUNTEERS</a>-->
+            <a href="#" class="mid_links">ORGANIZATIONS</a>
+            <a href="https://www.youtube.com/" class="mid_links">EVENTS</a>
+        </ul>
+    </div>
+  <div class="w3-container w3-center w3-animate-right" style="animation-duration: 3s; animation-delay: 3s">
+   <div class="block_title">
+     <h2 style=" font-size: 40px;
+       font-family: fantasy; color: darkslategray">Welcome to Helping Network</h2>
+   </div>
+  </div>
+        <section style="margin-top: 40px; margin-left: 750px;">
+            <p style="color:darkslategray; font-size: 28px;">M Nikhil</p>
+        </section>
+</div> 
+<!--<div class="w3-content w3-display-container">
+        {% load static %}
+        <img class="mySlides" style="display:none;" src="{% static 'evelist/socialwing3_2.jpg' %}" style="width:100%">
+        <img class="mySlides" style="display:none;" src="{% static 'evelist/udaaan1_2.jpg' %}" style="width:100%">
+        <img class="mySlides" style="display:none;" src="{% static 'evelist/udaan2_2.jpg' %}" style="width:100%">
+      
+        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+      </div>
+      
+      <script>
+      var slideIndex = 1;
+      showDivs(slideIndex);
+      
+      function plusDivs(n) {
+        showDivs(slideIndex += n);
+      }
+      
+      function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";  
+        }
+        x[slideIndex-1].style.display = "block";  
+      }
+      </script>-->
+      <div class="carousel-inner">
+            {% for i in img %}
+            <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}" id="slide{{ forloop.counter }}">
+              <img class="d-block w-50" src="{{i.image.url}}" alt="First slide" style="margin-top:50px; margin-bottom:50px; border-style:solid; margin-left: 220px;">
+            </div>
+            {% endfor %}
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
 {% endblock content %}

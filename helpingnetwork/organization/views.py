@@ -4,7 +4,10 @@ from .models import Organization,OrganizationImages
 from django.contrib.auth.models import User
 from django.contrib import messages
 from evelist.models import Event,EventImages
-from volunteer.models import City
+from volunteer.models import City,Volunteer
+from django.db.models import F
+
+
 # Create your views here.
 
 def signup(request):
@@ -79,3 +82,21 @@ def printo(request):
 
 		}
 	return render(request, 'organization/orgview.html',context)
+
+
+def v_name(request):
+	if request.method == 'GET':
+		event=request.GET.get('event')
+		x=Event.objects.get(name=event).volunteers.all()
+		context={
+			'volunname':x,
+		}
+	return render(request,'organization/vname.html',context)
+
+def upvote(request):
+	if request.method == 'GET':
+		volun=request.GET.get('volunteer')
+		c_user=User.objects.filter(username=volun).first()
+		c_vol=Volunteer.objects.filter(user=c_user).update(upvote=F('upvote')+1)
+		messages.success(request, f'successfully upvoted for {c_user}!')
+	return redirect('all_event')
