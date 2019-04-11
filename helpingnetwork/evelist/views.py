@@ -55,10 +55,10 @@ def e_signin(request):
 	current_user = request.user
 	y=Event.objects.filter(name=c_event).first()
 	z=y.volunteers.all()
-	
+
 	if(current_user.volunteer in z):
 		messages.warning(request, f'already Signed up for {eventt}!')
-	else:	
+	else:
 		v=current_user.volunteer
 		#c_org=request.GET.get('org')
 		x= Signup(event=eventt,volunteer=v,invite_reason="aisehi")
@@ -68,19 +68,16 @@ def e_signin(request):
 	return redirect('profile')
 
 def pingu(request,form=None):
-	if request.method=='GET':
+	if request.method=='GET' or request.method=='POST':
 		event=request.GET.get('event')
 		getevent=Event.objects.filter(name=event).first()
-		if request.method=='POST':
-			form=FeForm(request.POST)
-			if form.is_valid():
-				form.save()
-				messages.success(request, f' feedback successfully sent ')
-
-			return redirect('profile')		
+		form=FeForm(request.POST)
+		if form.is_valid():
+			form.save()
+			messages.success(request, f' feedback successfully sent ')
+			return redirect('profile')
 		else:
 			form=FeForm()
 
-	
-	return render(request,'evelist/something.html',{'something':form})
 
+	return render(request,'evelist/something.html',{'something':form})
