@@ -1,6 +1,7 @@
-Django==2.2
+-i https://pypi.org/simple/
 django-crispy-forms==1.7.2
 django-storages==1.7.1
-Pillow==6.0.0
-pytz==2018.9
-sqlparse==0.3.0
+django==2.2.13
+pillow==6.0.0
+pytz==2020.1
+sqlparse==0.3.1
